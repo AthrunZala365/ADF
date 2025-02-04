@@ -23,7 +23,7 @@
 					"value": "@dataset().FileName",
 					"type": "Expression"
 				},
-				"fileSystem": "Data"
+				"fileSystem": "data"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
