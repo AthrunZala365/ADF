@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "Destination",
-						"value": "dbo.2020"
+						"value": "dbo.@{pipeline().parameters.FileName}"
 					}
 				],
 				"typeProperties": {
@@ -77,7 +77,7 @@
 		"parameters": {
 			"FileName": {
 				"type": "string",
-				"defaultValue": "2021.csv"
+				"defaultValue": "2021"
 			}
 		},
 		"variables": {
