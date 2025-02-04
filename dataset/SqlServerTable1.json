@@ -1,0 +1,33 @@
+{
+	"name": "SqlServerTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "SourceSystem",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceFileName",
+				"type": "varchar"
+			},
+			{
+				"name": "SourceFileExtension",
+				"type": "varchar"
+			},
+			{
+				"name": "IsActive",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "etl",
+			"table": "ConfigurationTable"
+		}
+	}
+}
