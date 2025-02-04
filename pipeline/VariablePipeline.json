@@ -71,6 +71,30 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Set variable4",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "If Condition1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ListOfFiles",
+					"value": {
+						"value": "'Test'",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
