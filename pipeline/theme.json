@@ -37,6 +37,10 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
+						"preCopyScript": {
+							"value": "@concat('TRUNCATE TABLE [', pipeline().parameters.FileName, ']')\n",
+							"type": "Expression"
+						},
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate"
