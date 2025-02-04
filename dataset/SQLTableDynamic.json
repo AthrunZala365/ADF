@@ -1,5 +1,5 @@
 {
-	"name": "SqlServerTable1",
+	"name": "SQLTableDynamic",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlServer1",

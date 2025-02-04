@@ -13,7 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "Data//@{pipeline().parameters.FileName}.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.2020"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -29,7 +38,8 @@
 					"sink": {
 						"type": "SqlServerSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -55,8 +65,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SqlServerTable1",
-						"type": "DatasetReference"
+						"referenceName": "SQLTableDynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "@pipeline().parameters.FileName"
+						}
 					}
 				]
 			}
@@ -64,7 +77,7 @@
 		"parameters": {
 			"FileName": {
 				"type": "string",
-				"defaultValue": "2021.csv"
+				"defaultValue": "2021"
 			}
 		},
 		"variables": {
