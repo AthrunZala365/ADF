@@ -16,7 +16,10 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "2020"
+			"table": {
+				"value": "@dataset().FileName",
+				"type": "Expression"
+			}
 		}
 	}
 }
