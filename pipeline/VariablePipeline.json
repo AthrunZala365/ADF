@@ -37,6 +37,23 @@
 						"value": "@pipeline().parameters.LoadAllFiles",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Set variable3",
+							"description": "",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ListOfFiles",
+								"value": "FalseFiles"
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Set variable2",
