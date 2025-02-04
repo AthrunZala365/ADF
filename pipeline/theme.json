@@ -16,7 +16,7 @@
 				"userProperties": [
 					{
 						"name": "Source",
-						"value": "Data//@{pipeline().parameters.FileName}"
+						"value": "data//@{pipeline().parameters.FileName}"
 					},
 					{
 						"name": "Destination",
