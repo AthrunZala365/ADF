@@ -56,7 +56,16 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "SalesLT.Address"
+								},
+								{
+									"name": "Destination",
+									"value": "bronze/@{(concat(item().SchemaName,'/',item().TableName))}/@{(concat(item().TableName,'.parquet'))}"
+								}
+							],
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
@@ -98,7 +107,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"schemaname": {
-											"value": "item().SchemaName",
+											"value": "@item().SchemaName",
 											"type": "Expression"
 										},
 										"tablename": {
