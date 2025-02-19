@@ -50,7 +50,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "SqlServerSource",
-								"sqlReaderQuery": "SELECT s.name AS schameName,\nt.Name as tablename\nFrom sys.tables t \nINNER JOIN sys.schemas s ON t.schema_id = s.schema_id\nWHERE s.name = 'SalesLT'",
+								"sqlReaderQuery": "SELECT s.name AS schemaname,\nt.Name as tablename\nFrom sys.tables t \nINNER JOIN sys.schemas s ON t.schema_id = s.schema_id\nWHERE s.name = 'SalesLT' ",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -93,19 +93,15 @@
 									},
 									"userProperties": [
 										{
-											"name": "Source",
-											"value": "SalesLT.Address"
-										},
-										{
 											"name": "Destination",
-											"value": "bronze/@{(concat(item().schemaname,'/',item().tablename))}/@{(concat(item().tablename,'.parquet'))}"
+											"value": "bronze/@{concat(item().schemaname,'/',item().tablename)}/@{concat(item().tablename,'.parquet')}"
 										}
 									],
 									"typeProperties": {
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "@(concat('SELECT * FROM ', item().schemaname,'.', item().tablename))",
+												"value": "@{concat('SELECT * FROM ', item().schemaname,'.', item().tablename)}\n",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -142,11 +138,11 @@
 											"referenceName": "Parquet1",
 											"type": "DatasetReference",
 											"parameters": {
-												"schemaname": {
+												"SchemaName": {
 													"value": "@item().schemaname",
 													"type": "Expression"
 												},
-												"tablename": {
+												"TableName": {
 													"value": "@item().tablename",
 													"type": "Expression"
 												}
@@ -178,10 +174,10 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"schemaname": {
+					"SchemaName": {
 						"type": "string"
 					},
-					"tablename": {
+					"TableName": {
 						"type": "string"
 					}
 				},
@@ -191,11 +187,11 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@(concat(dataset().tablename,'.parquet'))",
+							"value": "@{concat(dataset().TableName,'.parquet')}",
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@(concat(dataset().schemaname,'/',dataset().tablename))",
+							"value": "@{concat(dataset().SchemaName,'/',dataset().TableName)}",
 							"type": "Expression"
 						},
 						"fileSystem": "bronze"
@@ -254,10 +250,7 @@
 						"type": "nvarchar"
 					}
 				],
-				"typeProperties": {
-					"schema": "SalesLT",
-					"table": "Address"
-				}
+				"typeProperties": {}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SQLServerOnPremLinkedService01')]"
@@ -361,6 +354,141 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline3')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "SELECT s.name AS schameName,\nt.Name as tablename\nFrom sys.tables t \nINNER JOIN sys.schemas s ON t.schema_id = s.schema_id\nWHERE s.name = 'SalesLT'",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SqlServerTable1Address",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Lookup1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup1').output.value",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy data1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [
+										{
+											"name": "Destination",
+											"value": "bronze/@{concat(item().schemaname,'/',item().tablename)}/@{concat(item().tablename,'.parquet')}"
+										}
+									],
+									"typeProperties": {
+										"source": {
+											"type": "SqlServerSource",
+											"sqlReaderQuery": {
+												"value": "@{concat('select * from ',item().schemaname,'.',item().tablename)}",
+												"type": "Expression"
+											},
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "ParquetSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "ParquetWriteSettings"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "SqlServerTable1Address",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Parquet1",
+											"type": "DatasetReference",
+											"parameters": {
+												"SchemaName": {
+													"value": "@item().schemaname",
+													"type": "Expression"
+												},
+												"TableName": {
+													"value": "@item().tablename",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable1Address')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet1')]"
+			]
 		}
 	]
 }
