@@ -1,16 +1,23 @@
 {
 	"name": "SQLServerOnPremLinkedService01",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "integrated security=False;data source=DESKTOP-N1A7I1M\\DEV001;initial catalog=Movies_01;user id=az",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5YTkzZDAxYi1hNDA1LTQxZTAtYTkwOS02MTRhMmRhY2NjMGIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "integrated security=False;Data Source=DESKTOP-N1A7I1M\\DEV001;Initial Catalog=Movies_01;User ID=az",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "password"
+			}
 		},
 		"connectVia": {
 			"referenceName": "SHR",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
