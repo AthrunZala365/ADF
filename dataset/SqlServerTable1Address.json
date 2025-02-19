@@ -41,10 +41,6 @@
 				"name": "Gender",
 				"type": "nvarchar"
 			}
-		],
-		"typeProperties": {
-			"schema": "SalesLT",
-			"table": "Address"
-		}
+		]
 	}
 }

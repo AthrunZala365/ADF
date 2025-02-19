@@ -64,7 +64,7 @@
 								},
 								{
 									"name": "Destination",
-									"value": "bronze/@{(concat(item().schemaname,'/',item().tablename))}/@{(concat(item().tablename,'.parquet'))}"
+									"value": "bronze/@{concat(item().schemaname,'/',item().tablename)}/@{concat(item().tablename,'.parquet')}"
 								}
 							],
 							"typeProperties": {
