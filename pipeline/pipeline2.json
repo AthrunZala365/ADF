@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "SqlServerTable1Address",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
