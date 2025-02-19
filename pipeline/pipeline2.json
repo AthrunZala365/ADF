@@ -63,14 +63,14 @@
 								},
 								{
 									"name": "Destination",
-									"value": "bronze/@{(concat(item().SchemaName,'/',item().TableName))}/@{(concat(item().TableName,'.parquet'))}"
+									"value": "bronze/@{(concat(item().schemaname,'/',item().tablename))}/@{(concat(item().tablename,'.parquet'))}"
 								}
 							],
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@(concat('SELECT * FROM ', item().SchemaName,'.', item().TableName))",
+										"value": "@(concat('SELECT * FROM ', item().schemaname,'.', item().tablename))",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -107,11 +107,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"schemaname": {
-											"value": "@item().SchemaName",
+											"value": "@item().schemaname",
 											"type": "Expression"
 										},
 										"tablename": {
-											"value": "@item().TableName",
+											"value": "@item().tablename",
 											"type": "Expression"
 										}
 									}
