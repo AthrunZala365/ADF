@@ -59,10 +59,6 @@
 							},
 							"userProperties": [
 								{
-									"name": "Source",
-									"value": "SalesLT.Address"
-								},
-								{
 									"name": "Destination",
 									"value": "bronze/@{concat(item().schemaname,'/',item().tablename)}/@{concat(item().tablename,'.parquet')}"
 								}
@@ -107,12 +103,12 @@
 									"referenceName": "Parquet1",
 									"type": "DatasetReference",
 									"parameters": {
-										"schemaname": {
-											"value": "@item().schemaname",
+										"SchemaName": {
+											"value": "@item().SchemaName",
 											"type": "Expression"
 										},
-										"tablename": {
-											"value": "@item().tablename",
+										"TableName": {
+											"value": "@item().TableName",
 											"type": "Expression"
 										}
 									}
