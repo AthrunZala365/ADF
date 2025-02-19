@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf132456a"
+		},
+		"AzureDataLakeStorage1LinkedService_accountKey": {
+			"value": ""
+		},
+		"SQLServerOnPremLinkedService01_connectionString": {
+			"value": "integrated security=False;Data Source=DESKTOP-N1A7I1M\\DEV001;Initial Catalog=AdventureWorksLT2022;User ID=az"
+		},
+		"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
+			"value": "https://destiny1234.dfs.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://keyvault123ab.vault.azure.net/"
+		}
+	}
+}
