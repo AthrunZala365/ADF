@@ -1,0 +1,50 @@
+{
+	"name": "SqlServerTable1Address",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLServerOnPremLinkedService01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ActorID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FamilyName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FullName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DoB",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "DoD",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "Gender",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "Address"
+		}
+	}
+}
