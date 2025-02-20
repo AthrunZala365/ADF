@@ -1,0 +1,12 @@
+{
+	"name": "SqlServerTables02",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedServerSHR02",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
