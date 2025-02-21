@@ -121,11 +121,15 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "Parquet3_FilesName",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"folder": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								},
-								"fieldList": [
-									"childItems"
-								],
+								"fieldList": [],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"enablePartitionDiscovery": false
