@@ -23,7 +23,7 @@
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "bronze",
+					"value": "@dataset().folder",
 					"type": "Expression"
 				}
 			},
