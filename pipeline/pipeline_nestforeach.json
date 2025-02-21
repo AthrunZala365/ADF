@@ -13,7 +13,33 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Parquet_nestforeach_main",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": {
+								"value": "@pipeline().parameters.folder",
+								"type": "Expression"
+							},
+							"subfolder": {
+								"value": "@pipeline().parameters.subfolder",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "ParquetReadSettings"
+					}
+				}
 			},
 			{
 				"name": "ForEach1",
@@ -26,9 +52,53 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pipeline_nestforeach_child",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"folder": {
+										"value": "@pipeline().parameters.folder",
+										"type": "Expression"
+									},
+									"subfolder": {
+										"value": "@concat(item(),'\\',pipeline().parameters.subfolder)",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
 			}
 		],
+		"parameters": {
+			"folder": {
+				"type": "string",
+				"defaultValue": "bronze"
+			},
+			"subfolder": {
+				"type": "string",
+				"defaultValue": "SalesLT "
+			}
+		},
 		"annotations": []
 	}
 }
