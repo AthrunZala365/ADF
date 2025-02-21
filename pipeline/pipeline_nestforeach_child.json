@@ -101,7 +101,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "parquet_nestforeach_child",
+									"referenceName": "Parquet_nestforeach_child",
 									"type": "DatasetReference",
 									"parameters": {
 										"folder": {
