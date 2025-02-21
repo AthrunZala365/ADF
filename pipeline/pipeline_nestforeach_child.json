@@ -1,5 +1,5 @@
 {
-	"name": "pipeline_nestforeach_copy1",
+	"name": "pipeline_nestforeach_child",
 	"properties": {
 		"activities": [
 			{
@@ -17,9 +17,21 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "Parquet6",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folder": {
+								"value": "@pipeline().parameters.folder",
+								"type": "Expression"
+							},
+							"subfolder": {
+								"value": "@pipeline().parameters.subfolder",
+								"type": "Expression"
+							}
+						}
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
@@ -40,11 +52,81 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ParquetSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "ParquetReadSettings"
+									}
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate"
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "parquet_nestforeach_child",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "sqltables_nestforeach",
+									"type": "DatasetReference",
+									"parameters": {
+										"table": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
 			"folder": {
+				"type": "string"
+			},
+			"subfolder": {
 				"type": "string"
 			}
 		},
