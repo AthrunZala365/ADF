@@ -20,11 +20,11 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "@pipeline().parameters.folder",
+								"value": "bronze",
 								"type": "Expression"
 							},
 							"subfolder": {
-								"value": "@pipeline().parameters.subfolder",
+								"value": "salesLT",
 								"type": "Expression"
 							}
 						}
@@ -44,6 +44,8 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Get Metadata1",
@@ -58,6 +60,7 @@
 						"value": "@activity('Get Metadata1').output.childItems",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Execute Pipeline1",
