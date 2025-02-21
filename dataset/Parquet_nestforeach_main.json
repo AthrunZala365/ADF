@@ -5,13 +5,27 @@
 			"referenceName": "AzureDataLakeStorage1LinkedService",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"subfolder": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "SalesLT",
-				"fileSystem": "bronze"
+				"folderPath": {
+					"value": "@dataset().subfolder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().folder",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},
