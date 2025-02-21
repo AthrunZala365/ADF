@@ -129,9 +129,7 @@
 										}
 									}
 								},
-								"fieldList": [
-									"childItems"
-								],
+								"fieldList": [],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"enablePartitionDiscovery": false
@@ -159,6 +157,28 @@
 									"value": "@concat(item().name,'\\',activity('Get Metadata2').output.childItems[0])",
 									"type": "Expression"
 								}
+							}
+						},
+						{
+							"name": "Execute Pipeline5",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Append variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureInput": false
+							},
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pipeline5",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					]
@@ -191,6 +211,8 @@
 			{
 				"name": "ForEach2",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Set variable1",
@@ -205,7 +227,6 @@
 						"value": "@variables('listvar')",
 						"type": "Expression"
 					},
-					"batchCount": 0,
 					"activities": [
 						{
 							"name": "Append variable2",
