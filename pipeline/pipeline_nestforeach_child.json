@@ -125,7 +125,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"table": {
-											"value": "@item().name",
+											"value": "@replace(item().name,'.parquet','')",
 											"type": "Expression"
 										}
 									}
