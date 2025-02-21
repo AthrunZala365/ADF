@@ -1,0 +1,23 @@
+{
+	"name": "sqltables_nestforeach",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLServerOnPremLinkedService01",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().table",
+				"type": "Expression"
+			}
+		}
+	}
+}
