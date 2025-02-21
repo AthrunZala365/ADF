@@ -2,7 +2,7 @@
 	"name": "sqltables_nestforeach",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SQLServerOnPremLinkedService01",
+			"referenceName": "LinkedServerSHR02",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
