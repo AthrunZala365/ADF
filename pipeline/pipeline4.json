@@ -156,7 +156,7 @@
 							"typeProperties": {
 								"variableName": "listvar",
 								"value": {
-									"value": "@activity('Get Metadata2').output.childItems[0]",
+									"value": "@concat(item().name,'\\',activity('Get Metadata2').output.childItems[0])",
 									"type": "Expression"
 								}
 							}
@@ -187,6 +187,41 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "ForEach2",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('listvar')",
+						"type": "Expression"
+					},
+					"batchCount": 0,
+					"activities": [
+						{
+							"name": "Append variable2",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "test",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"variables": {
@@ -197,6 +232,9 @@
 				"type": "Array"
 			},
 			"outsideListVar": {
+				"type": "Array"
+			},
+			"test": {
 				"type": "Array"
 			}
 		},
