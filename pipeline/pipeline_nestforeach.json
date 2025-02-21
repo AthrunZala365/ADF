@@ -99,7 +99,7 @@
 			},
 			"subfolder": {
 				"type": "string",
-				"defaultValue": "SalesLT "
+				"defaultValue": "SalesLT"
 			}
 		},
 		"annotations": []
