@@ -1,0 +1,41 @@
+{
+	"name": "Parquet_nestforeach_child",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folder": {
+				"type": "string"
+			},
+			"subfolder": {
+				"type": "string"
+			},
+			"parquet": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().parquet",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().subfolder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().folder",
+					"type": "Expression"
+				}
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
