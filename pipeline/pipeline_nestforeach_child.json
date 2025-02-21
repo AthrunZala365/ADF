@@ -102,7 +102,21 @@
 							"inputs": [
 								{
 									"referenceName": "parquet_nestforeach_child",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"folder": {
+											"value": "@pipeline().parameters.folder",
+											"type": "Expression"
+										},
+										"subfolder": {
+											"value": "@pipeline().parameters.subfolder",
+											"type": "Expression"
+										},
+										"parquet": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
