@@ -15,9 +15,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "@dataset().folder",
 				"fileSystem": {
-					"value": "SalesLT",
+					"value": "@dataset().folder",
 					"type": "Expression"
 				}
 			},
