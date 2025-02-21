@@ -45,23 +45,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "pipeline5_parquet_final",
-									"type": "DatasetReference",
-									"parameters": {
-										"folder": {
-											"value": "@item().folder",
-											"type": "Expression"
-										},
-										"subfolder": {
-											"value": "@item().files",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+							}
 						}
 					]
 				}
@@ -79,23 +63,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "pipeline5_parquet",
-						"type": "DatasetReference",
-						"parameters": {
-							"folder": {
-								"value": "@variables('folder')",
-								"type": "Expression"
-							},
-							"subfolder": {
-								"value": "@variables('subfolder')",
-								"type": "Expression"
-							}
-						}
-					},
 					"fieldList": [],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {

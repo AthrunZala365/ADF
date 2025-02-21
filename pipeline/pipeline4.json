@@ -46,13 +46,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Parquet2",
+						"referenceName": "Parquet5",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "SqlServerTables02",
+						"referenceName": "SqlServerTables05",
 						"type": "DatasetReference"
 					}
 				]
@@ -71,7 +71,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Parquet2",
+						"referenceName": "Parquet5",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
@@ -120,7 +120,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "Parquet3_FilesName",
+									"referenceName": "Parquet5_FilesName",
 									"type": "DatasetReference",
 									"parameters": {
 										"folder": {
@@ -132,6 +132,7 @@
 								"fieldList": [],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -173,6 +174,7 @@
 							"policy": {
 								"secureInput": false
 							},
+							"userProperties": [],
 							"typeProperties": {
 								"pipeline": {
 									"referenceName": "pipeline5",

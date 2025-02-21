@@ -46,7 +46,10 @@
 								},
 								"sink": {
 									"type": "SqlServerSink",
-									"preCopyScript": "@{concat('TRUNCATE TABLE ', item().name)}",
+									"preCopyScript": {
+										"value": "@{concat('TRUNCATE TABLE ', item().name)}",
+										"type": "Expression"
+									},
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate"
@@ -63,7 +66,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "Parquet3_FilesName",
+									"referenceName": "Parquet5_FilesName",
 									"type": "DatasetReference",
 									"parameters": {
 										"folder": {
@@ -75,7 +78,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "SqlServerTables02",
+									"referenceName": "SqlServerTables05",
 									"type": "DatasetReference",
 									"parameters": {
 										"table": {
@@ -103,7 +106,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Parquet2",
+						"referenceName": "Parquet5",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
@@ -112,6 +115,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
