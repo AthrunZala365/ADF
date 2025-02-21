@@ -129,7 +129,9 @@
 										}
 									}
 								},
-								"fieldList": [],
+								"fieldList": [
+									"childItems"
+								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"enablePartitionDiscovery": false
@@ -138,11 +140,66 @@
 									"type": "ParquetReadSettings"
 								}
 							}
+						},
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "listvar",
+								"value": {
+									"value": "@activity('Get Metadata2').output.childItems[0]",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "outsideListVar",
+					"value": {
+						"value": "@variables('listvar')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"listvar": {
+				"type": "Array"
+			},
+			"meta": {
+				"type": "Array"
+			},
+			"outsideListVar": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
