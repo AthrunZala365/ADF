@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Parquet_nestforeach_main",
+						"referenceName": "parquet_nestforeach_child",
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
