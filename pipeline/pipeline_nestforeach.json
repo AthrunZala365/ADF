@@ -20,11 +20,11 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folder": {
-								"value": "bronze",
+								"value": "@pipeline().parameters.folder",
 								"type": "Expression"
 							},
 							"subfolder": {
-								"value": "salesLT",
+								"value": "SalesLT",
 								"type": "Expression"
 							}
 						}
