@@ -5,17 +5,32 @@
 		"factoryName": {
 			"value": "adf132456a"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1LinkedService_accountKey": {
 			"value": ""
 		},
 		"SQLServerOnPremLinkedService01_connectionString": {
 			"value": "integrated security=False;Data Source=DESKTOP-N1A7I1M\\DEV001;Initial Catalog=AdventureWorksLT2022;User ID=az"
 		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://destiny1234.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
 			"value": "https://destiny1234.dfs.core.windows.net/"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://keyvault123ab.vault.azure.net/"
+		},
+		"LinkedServerSHR02_properties_typeProperties_server": {
+			"value": "DESKTOP-N1A7I1M\\DEV001"
+		},
+		"LinkedServerSHR02_properties_typeProperties_database": {
+			"value": "RS001"
+		},
+		"LinkedServerSHR02_properties_typeProperties_userName": {
+			"value": "az"
 		},
 		"containerUri": {
 			"value": ""

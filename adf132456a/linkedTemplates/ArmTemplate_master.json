@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf132456a"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
 		"AzureDataLakeStorage1LinkedService_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1LinkedService'"
@@ -16,6 +20,10 @@
 			"metadata": "Secure string for 'connectionString' of 'SQLServerOnPremLinkedService01'",
 			"defaultValue": "integrated security=False;Data Source=DESKTOP-N1A7I1M\\DEV001;Initial Catalog=AdventureWorksLT2022;User ID=az"
 		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://destiny1234.dfs.core.windows.net/"
+		},
 		"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://destiny1234.dfs.core.windows.net/"
@@ -23,6 +31,18 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://keyvault123ab.vault.azure.net/"
+		},
+		"LinkedServerSHR02_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "DESKTOP-N1A7I1M\\DEV001"
+		},
+		"LinkedServerSHR02_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "RS001"
+		},
+		"LinkedServerSHR02_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "az"
 		},
 		"containerUri": {
 			"type": "string",
@@ -51,17 +71,32 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
 					"AzureDataLakeStorage1LinkedService_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1LinkedService_accountKey')]"
 					},
 					"SQLServerOnPremLinkedService01_connectionString": {
 						"value": "[parameters('SQLServerOnPremLinkedService01_connectionString')]"
 					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
 					"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1LinkedService_properties_typeProperties_url')]"
 					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"LinkedServerSHR02_properties_typeProperties_server": {
+						"value": "[parameters('LinkedServerSHR02_properties_typeProperties_server')]"
+					},
+					"LinkedServerSHR02_properties_typeProperties_database": {
+						"value": "[parameters('LinkedServerSHR02_properties_typeProperties_database')]"
+					},
+					"LinkedServerSHR02_properties_typeProperties_userName": {
+						"value": "[parameters('LinkedServerSHR02_properties_typeProperties_userName')]"
 					}
 				}
 			},
