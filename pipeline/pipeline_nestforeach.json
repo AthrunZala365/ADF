@@ -80,7 +80,7 @@
 										"type": "Expression"
 									},
 									"subfolder": {
-										"value": "@concat(item().name,'\\',pipeline().parameters.subfolder)",
+										"value": "@concat(pipeline().parameters.subfolder,'\\',item().name)",
 										"type": "Expression"
 									}
 								}
