@@ -18,7 +18,7 @@
 					"storedProcedureName": "[dbo].[InsertActor1]"
 				},
 				"linkedServiceName": {
-					"referenceName": "linkedService1",
+					"referenceName": "StoredProcSQLServer",
 					"type": "LinkedServiceReference"
 				}
 			}
