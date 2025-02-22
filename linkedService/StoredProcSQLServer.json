@@ -1,0 +1,21 @@
+{
+	"name": "StoredProcSQLServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "DESKTOP-N1A7I1M\\DEV001",
+			"database": "RS001",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "dba",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwMDZmMWQwNS1iZjk5LTQwNmEtOTM3MC1mODY5YTBlYjYzZjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
